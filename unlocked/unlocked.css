@@ -6,7 +6,7 @@ body {
     height: 100%;
     overflow: hidden;
     font-family: 'Courier New', monospace;
-    background: black;
+    background: transparent;
 }
 
 /* Videon som täcker hela bakgrunden */

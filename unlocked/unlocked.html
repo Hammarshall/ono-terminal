@@ -9,11 +9,10 @@
 
 <body>
   <!-- Video som bakgrund -->
-  <video autoplay muted loop id="bgVideo">
-    <!-- Istället för "../assets/ONO_compressed.mp4" -->
-    <source src="/ono-terminal/assets/ONO_compressed.mp4" type="video/mp4" />
+  <video autoplay muted loop id="bgVideo" playsinline>
+    <source src="../assets/ONO_compressed.mp4" type="video/mp4" />
     Your browser does not support the video tag.
-    </video>
+  </video>
 
   <!-- Text över videon -->
   <div class="overlay-text">WE ARE ONO</div>
