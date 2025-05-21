@@ -21,17 +21,18 @@ const artistsData = [
     ticketLink: "https://tickets.com/neonshadow",
   },
   {
-    name: "CYBER RAVEN",
-    desc: "Mörk techno med cyberpunk-vibbar som förför sin publik.",
-    time: "Fredag 00:00",
+    name: "THEO SÖDERLUND",
+    desc: "EN FKN KUNG DJ SOM ÄLSKAR ATT SPELA.",
+    time: "Fredag 05:00",
     genre: "Techno",
-    floor: "Golvet 2",
-    img: "placeholders/cyber-raven.png",
+    floor: "RÖDA RUMMET",
+    img: "../assets/theo-soderlund.jpg",
     social: {
-      spotify: "https://open.spotify.com/artist/2",
-      instagram: "https://instagram.com/cyberraven",
+      spotify: "https://open.spotify.com/user/1187414076?si=9cb79416fa6e4c48",
+      instagram: "https://www.instagram.com/theo.soderlund/",
     },
-    spotifyEmbed: "https://open.spotify.com/embed/artist/2",
+    spotifyEmbed:
+      "https://open.spotify.com/embed/artist/2YZyLoL8N0Wb9xBt1NhZWg",
     ticketLink: "https://tickets.com/cyberraven",
   },
   {
