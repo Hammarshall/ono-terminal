@@ -20,10 +20,18 @@
   <!-- Knapp för att gå tillbaka -->
   <button id="backBtn">Tillbaka till startsidan</button>
 
+  <!-- Ny knapp till artister -->
+  <button id="artistsBtn">Artister</button>
+
   <script>
     // Event listener för tillbaka-knappen
     document.getElementById('backBtn').addEventListener('click', () => {
-      window.location.href = '../index.html'; // Går tillbaka till startsidan
+      window.location.href = '../index.html';
+    });
+
+    // Event listener för artister-knappen
+    document.getElementById('artistsBtn').addEventListener('click', () => {
+      window.location.href = '../artist/artist.html';  // Ändra till rätt sökväg om annorlunda
     });
   </script>
 </body>

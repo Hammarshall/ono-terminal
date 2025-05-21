@@ -19,7 +19,7 @@ video#bgVideo {
     width: auto;
     height: auto;
     z-index: -1;
-    /* Bakom texten och knappen */
+    /* Bakom texten och knapparna */
     transform: translate(-50%, -50%);
     object-fit: cover;
 }
@@ -38,11 +38,11 @@ video#bgVideo {
     /* Över videon */
 }
 
-/* Stil för tillbaka-knappen */
-#backBtn {
+/* Stil för tillbaka-knappen och artister-knappen */
+#backBtn,
+#artistsBtn {
     position: fixed;
     bottom: 20px;
-    right: 20px;
     padding: 10px 25px;
     font-size: 1rem;
     cursor: pointer;
@@ -57,6 +57,18 @@ video#bgVideo {
     /* Ligger över videon och texten */
 }
 
-#backBtn:hover {
+/* Tillbaka-knappen till höger */
+#backBtn {
+    right: 20px;
+}
+
+/* Artister-knappen flyttad mer åt vänster för större avstånd */
+#artistsBtn {
+    right: 300px;
+    /* Ökat från 140px till 180px */
+}
+
+#backBtn:hover,
+#artistsBtn:hover {
     background-color: #0c0;
     /* Mörkare grön vid hover */ }

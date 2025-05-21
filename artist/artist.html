@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>ONO Festival - Artist Lineup</title>
+    <link rel="stylesheet" href="artist.css" />
+</head>
+
+<body>
+
+    <header>Artist Lineup</header>
+
+    <div id="artists">
+        <div tabindex="0" class="artist" data-name="NEON SHADOW"
+            data-desc="En futuristisk synthvåg som får publiken att dansa hela natten." data-time="Lördag 22:00"
+            data-img="https://via.placeholder.com/350x150?text=Neon+Shadow">NEON SHADOW</div>
+        <div tabindex="0" class="artist" data-name="CYBER RAVEN"
+            data-desc="Mörk techno med cyberpunk-vibbar som förför sin publik." data-time="Fredag 00:00"
+            data-img="https://via.placeholder.com/350x150?text=Cyber+Raven">CYBER RAVEN</div>
+        <div tabindex="0" class="artist" data-name="VOIDWALKER"
+            data-desc="Hypnotiska beats och atmosfäriska ljudlandskap." data-time="Söndag 21:00"
+            data-img="https://via.placeholder.com/350x150?text=Voidwalker">VOIDWALKER</div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalName" aria-describedby="modalDesc">
+        <div id="modalContent">
+            <div id="modalClose" role="button" tabindex="0" aria-label="Stäng modal">&times;</div>
+            <h2 id="modalName"></h2>
+            <img id="modalImg" src="" alt="Artistbild" />
+            <p id="modalDesc"></p>
+            <p><strong>Speltid:</strong> <span id="modalTime"></span></p>
+        </div>
+    </div>
+
+    <script>
+        const artists = document.querySelectorAll('.artist');
+        const modal = document.getElementById('modal');
+        const modalName = document.getElementById('modalName');
+        const modalDesc = document.getElementById('modalDesc');
+        const modalTime = document.getElementById('modalTime');
+        const modalImg = document.getElementById('modalImg');
+        const modalClose = document.getElementById('modalClose');
+
+        // Öppna modal på klick eller Enter-knapp
+        artists.forEach(artist => {
+            artist.addEventListener('click', () => openModal(artist));
+            artist.addEventListener('keydown', e => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal(artist);
+                }
+            });
+        });
+
+        function openModal(artist) {
+            modalName.textContent = artist.dataset.name;
+            modalDesc.textContent = artist.dataset.desc;
+            modalTime.textContent = artist.dataset.time;
+            modalImg.src = artist.dataset.img;
+            modal.style.display = 'flex';
+            modalClose.focus();
+        }
+
+        // Stäng modal på knappklick eller Enter/Space
+        modalClose.addEventListener('click', closeModal);
+        modalClose.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                closeModal();
+            }
+        });
+
+        // Stäng modalen om man klickar utanför innehållet
+        modal.addEventListener('click', e => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Stäng modalen med Escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && modal.style.display === 'flex') {
+                closeModal();
+            }
+        });
+
+        function closeModal() {
+            modal.style.display = 'none';
+            // Sätt fokus tillbaka till första artist för bättre tillgänglighet
+            artists[0].focus();
+        }
+    </script>
+
+</body>
+
+</html>
