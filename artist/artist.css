@@ -1,4 +1,7 @@
-/* ► BODY & LAYOUT */
+
+/* ==========================================================================
+   ► BODY & LAYOUT
+   ========================================================================== */
 body {
     margin: 0;
     background: black;
@@ -13,39 +16,102 @@ body {
     align-items: center;
 }
 
-/* ► HEADER */
+/* ==========================================================================
+   ► HEADER (SIDTITEL)
+   ========================================================================== */
 header {
     font-size: 3rem;
+    /* Stor rubrik */
     margin-bottom: 40px;
+    /* Luft under */
     text-transform: uppercase;
     letter-spacing: 0.15em;
+    /* Mellanrum mellan bokstäver */
     animation: glitch 2s infinite;
     /* Glitch-effekt */
     user-select: none;
+    /* Ingen markering */
 }
 
-/* ► FILTER & SORT CONTAINER */
+/* ==========================================================================
+   ► FILTER & SORT CONTAINER
+   ========================================================================== */
 #filterControls {
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+    /* Avstånd mellan fält */
     width: 100%;
     max-width: 1000px;
     margin-bottom: 30px;
+    /* Luft under */
 }
 
+/* Grundstil för sökfält + dropdowns */
 #filterControls input,
 #filterControls select {
     padding: 8px;
+    /* Inre luft */
     font-size: 1rem;
+    /* Lättläst text */
 }
 
-#filterControls input {
+/* Sökrutan expanderar */
+#filterControls input[type="text"] {
     flex-grow: 1;
     min-width: 180px;
 }
 
-/* ► ARTISTKORT (GRID) */
+/* ► VIBE-STYLING FÖR SÖK & DROPDOWNS */
+#filterControls input[type="text"],
+#filterControls select {
+    background: rgba(0, 0, 0, 0.85);
+    /* Mörk transparent bakgrund */
+    border: 2px solid #0f0;
+    /* Neon-grön kant */
+    box-shadow: 0 0 8px #0f0, 0 0 16px #0f0;
+    /* Neon-glow */
+    color: #0f0;
+    /* Grön text */
+    border-radius: 5px;
+    /* Rundade hörn */
+    outline: none;
+    /* Ingen blå kant */
+    transition:
+        box-shadow 0.2s ease,
+        border-color 0.2s ease;
+    /* Mjuka övergångar */
+    animation: inputGlitch 3s infinite;
+    /* Diskret glitch-anim */
+}
+
+/* Hover/fokus på sök + dropdown */
+#filterControls input[type="text"]:hover,
+#filterControls input[type="text"]:focus,
+#filterControls select:hover,
+#filterControls select:focus {
+    border-color: #ff0040;
+    /* Magenta kant */
+    box-shadow: 0 0 12px #ff0040, 0 0 24px #ff0040;
+    /* Magenta-glow */
+}
+
+/* Animation för input-glitch */
+@keyframes inputGlitch {
+
+    0%,
+    100% {
+        text-shadow: 1px 0 #0f0, -1px 0 #0f0;
+    }
+
+    50% {
+        text-shadow: 1px 0 #ff0040, -1px 0 #00fff7;
+    }
+}
+
+/* ==========================================================================
+   ► ARTIST-GRID
+   ========================================================================== */
 #artists {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -54,10 +120,14 @@ header {
     max-width: 1000px;
 }
 
+/* ► ARTIST-KORT */
 .artist-card {
     background: rgba(0, 0, 0, 0.75);
+    /* Halvtransparent bakgrund */
     border: 2px solid #0f0;
+    /* Grön kant */
     box-shadow: 0 0 15px #0f0;
+    /* Grön glow */
     border-radius: 10px;
     padding: 15px;
     display: flex;
@@ -65,6 +135,7 @@ header {
     align-items: center;
     cursor: pointer;
     animation: glitchText 3s infinite;
+    /* Svag text-glitch */
     transition: box-shadow .3s, border-color .3s;
     outline: none;
 }
@@ -92,25 +163,15 @@ header {
 .artist-card:hover,
 .artist-card:focus {
     border-color: #ff0040;
+    /* Magenta kant */
     box-shadow: 0 0 20px #ff0040;
     color: #ff0040;
     animation: none;
+    /* Stoppa glitch vid hover */
     outline: 2px solid #ff0040;
 }
 
-/* ► KEYFRAMES: GLITCH */
-@keyframes glitch {
-
-    0%,
-    100% {
-        text-shadow: 2px 0 #ff0040, -2px 0 #00fff7;
-    }
-
-    50% {
-        text-shadow: -2px 0 #ff0040, 2px 0 #00fff7;
-    }
-}
-
+/* ► TEXT-GLITCH FOR ARTISTS */
 @keyframes glitchText {
 
     0%,
@@ -123,81 +184,235 @@ header {
     }
 }
 
-/* ► MODAL-STYLING */
+/* ==========================================================================
+   ► MODAL-CONTAINER – HELA ÖVERLÄGG
+   ========================================================================== */
 #modal {
     display: none;
-    /* Gömmer initialt */
+    /* Göm initialt */
     position: fixed;
+    /* Fäst på skärmen */
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
+    /* Täcker hela ytan */
     background: rgba(0, 0, 0, 0.85);
+    /* Mörk transparent bakgrund */
     backdrop-filter: blur(4px);
+    /* Sudda ut bakgrunden */
     justify-content: center;
+    /* Centrera horisontellt */
     align-items: center;
+    /* Centrera vertikalt */
     opacity: 0;
-    transition: opacity .3s;
+    /* Osynlig */
+    transition: opacity 0.3s ease;
+    /* Fade-in */
     z-index: 100;
+    /* Överst */
 }
 
 #modal[style*="display: flex"] {
     display: flex;
     opacity: 1;
+    /* Visa med fade-in */
 }
 
+/* ==========================================================================
+   ► MODAL-INNEHÅLL – BOXEN I MITTEN
+   ========================================================================== */
 #modalContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Centrera horisontellt */
+    text-align: center;
+    /* Centrera text */
+    width: 280px;
+    /* Fast bredd */
+    max-width: 90vw;
+    /* Anpassar för små skärmar */
+    padding: 20px 15px;
+    /* Luft inuti boxen */
     background: #111;
+    /* Mörk bakgrund */
     border: 2px solid #0f0;
-    padding: 20px;
-    max-width: 400px;
-    position: relative;
+    /* Neon-grön kant */
     box-shadow: 0 0 15px #0f0;
+    /* Grön glow */
     border-radius: 10px;
     color: #0f0;
-    font-size: 1rem;
+    /* Neon-grön text */
+    font-size: 0.9rem;
+    position: relative;
+    /* För stäng-knapp */
 }
 
-#modalContent img {
-    max-width: 100%;
-    margin-bottom: 10px;
+/* ==========================================================================
+   ► RESPONSIVT
+   ========================================================================== */
+@media (max-width: 480px) {
+    #filterControls {
+        flex-direction: column;
+        /* Stapla filterkontroller */
+    }
+
+    #filterControls input,
+    #filterControls select {
+        width: 100%;
+        /* Full bredd */
+    }
+
+    #modalContent {
+        width: 90vw;
+        /* Nästan hela skärmen */
+        padding: 15px;
+        /* Minska padding */
+    }
+}
+
+/* ==========================================================================
+   ► TVINGA MODALENS BILDSTORLEK
+   ========================================================================== */
+#modalImg {
+    display: block;
+    /* Block så margin auto funkar */
+    margin: 0 auto 20px;
+    /* Centrera + luft under */
+    width: 100% !important;
+    /* Fyller sin box */
+    max-width: 240px !important;
+    /* Högst 240px bred */
+    max-height: 140px !important;
+    /* Högst 140px hög */
+    object-fit: cover;
+    /* Beskär snyggt */
     border: 1px solid #0f0;
+    /* Grön kant */
     border-radius: 5px;
+    /* Rundade hörn */
 }
 
+/* ==========================================================================
+   ► STÄNG-KNAPP
+   ========================================================================== */
 #modalClose {
     position: absolute;
     top: 8px;
     right: 12px;
-    cursor: pointer;
+    /* Övre högra hörnet */
     font-size: 1.5rem;
     color: #ff0040;
+    /* Magenta */
+    cursor: pointer;
+    /* Klickbar */
 }
 
+/* ==========================================================================
+   ► DIALOGINNEHÅLL: SOCIALA & KNAPPAR
+   ========================================================================== */
 #socialLinks a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid #0f0;
+    padding: 8px 12px;
+    border-radius: 5px;
     margin-right: 10px;
+    margin-bottom: 15px;
+    transition: background 0.2s, border-color 0.2s;
 }
 
-#socialLinks img {
-    height: 24px;
-    vertical-align: middle;
+#socialLinks a img {
+    width: 20px;
+    height: 20px;
+    color: #0f0;
+    /* Neon-grön */
+    fill: currentColor;
+    /* SVG-fill från color */
+    filter: drop-shadow(0 0 4px #0f0) drop-shadow(0 0 8px #0f0);
+    animation: iconGlitch 3s infinite;
 }
 
+#socialLinks a:hover {
+    background: #0f0;
+    /* Grön bakgrund */
+    border-color: #ff0040;
+    /* Magenta kant */
+}
+
+#socialLinks a:hover img {
+    filter: drop-shadow(0 0 6px #ff0040) drop-shadow(0 0 12px #ff0040);
+}
+
+/* ► DISKRET GLITCH-ANIMATION FÖR IKONER */
+@keyframes iconGlitch {
+
+    0%,
+    100% {
+        transform: translate(0, 0);
+        opacity: 1;
+    }
+
+    10% {
+        transform: translate(-1px, 1px);
+        opacity: 0.9;
+    }
+
+    20% {
+        transform: translate(2px, -1px);
+        opacity: 0.85;
+    }
+
+    30% {
+        transform: translate(-2px, 2px);
+        opacity: 0.9;
+    }
+
+    40% {
+        transform: translate(1px, -2px);
+        opacity: 0.95;
+    }
+}
+
+/* ==========================================================================
+   ► KNAPP-STYLING: BILJETT & KALENDAR
+   ========================================================================== */
 #ticketLink,
 #addCalBtn {
     display: inline-block;
-    margin: 10px 5px 0 0;
     padding: 8px 12px;
+    margin: 10px 5px 0 0;
     background: #0f0;
+    /* Neon-grön */
     color: black;
-    text-decoration: none;
+    /* Svart text */
     border: none;
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
 }
 
-/* ► TIMELINE */
+#addCalBtn {
+    background: #ff0040;
+}
+
+/* Magenta för kalender */
+#ticketLink:hover {
+    background: #0c0;
+}
+
+#addCalBtn:hover {
+    background: #e60039;
+}
+
+/* ==========================================================================
+   ► TIMELINE
+   ========================================================================== */
 #timelineSection {
     width: 100%;
     max-width: 1000px;
@@ -228,18 +443,21 @@ header {
 
 .timeline-item h4 {
     margin: 0;
-    color: #0f0;
     font-size: 1.2rem;
+    color: #0f0;
     margin-left: 20px;
 }
 
 .timeline-item time {
+    display: block;
+    margin-left: 20px;
     font-size: 0.9rem;
     color: #aaa;
-    margin-left: 20px;
 }
 
-/* ► TILLBAKA-KNAPP */
+/* ==========================================================================
+   ► TILLBAKA-KNAPP
+   ========================================================================== */
 #backBtn {
     position: fixed;
     top: 20px;
@@ -257,71 +475,3 @@ header {
 #backBtn:hover {
     background: #0c0;
 }
-
-/* ► RESPONSIVT */
-@media (max-width:480px) {
-    #filterControls {
-        flex-direction: column;
-    }
-
-    #filterControls input,
-    #filterControls select {
-        width: 100%;
-    }
-
-    #modalContent {
-        width: 90vw;
-        padding: 15px;
-    } }
-
-        /* ► VIBE-STYLING FÖR SÖKFÄLT OCH DROPDOWNS */
-        #filterControls input[type="text"],
-        #filterControls select {
-            background: rgba(0, 0, 0, 0.85);
-            /* Mörk, transparent bakgrund */
-            border: 2px solid #0f0;
-            /* Neongrön kant */
-            box-shadow: 0 0 8px #0f0, 0 0 16px #0f0;
-            /* Glowing neon-effekt */
-            color: #0f0;
-            /* Grön text */
-            font-family: 'Courier New', monospace;
-            /* Terminal-font */
-            font-size: 1rem;
-            /* Passande storlek */
-            padding: 8px 12px;
-            /* Inre luft */
-            border-radius: 5px;
-            /* Rundade hörn */
-            outline: none;
-            /* Ingen default-focus */
-            transition:
-                box-shadow 0.2s ease,
-                /* Mjuk övergång */
-                border-color 0.2s ease;
-            animation: inputGlitch 3s infinite;
-            /* Lätt glitch-animation */
-        }
-    
-        /* Hover- och fokusstate får starkare glow */
-        #filterControls input[type="text"]:hover,
-        #filterControls input[type="text"]:focus,
-        #filterControls select:hover,
-        #filterControls select:focus {
-            border-color: #ff0040;
-            /* Magenta kant vid hover */
-            box-shadow: 0 0 12px #ff0040, 0 0 24px #ff0040;
-        }
-    
-        /* ► LITEN GLITCH-ANIMATION FÖR INPUT/SELECT */
-        @keyframes inputGlitch {
-    
-            0%,
-            100% {
-                text-shadow: 1px 0 #0f0, -1px 0 #0f0;
-            }
-    
-            50% {
-                text-shadow: 1px 0 #ff0040, -1px 0 #00fff7;
-            }
-        }
