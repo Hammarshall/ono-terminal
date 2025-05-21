@@ -25,7 +25,7 @@ const artistsData = [
     desc: "EN FKN KUNG DJ SOM ÄLSKAR ATT SPELA.",
     time: "Fredag 05:00",
     genre: "Techno",
-    floor: "RÖDA RUMMET",
+    floor: "Röda rummet",
     img: "../assets/theo-soderlund.jpg",
     social: {
       spotify: "https://open.spotify.com/user/1187414076?si=9cb79416fa6e4c48",
