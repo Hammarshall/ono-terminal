@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>ONO Access - Felmeddelande</title>
+    <!-- Länk till CSS för error-sidan -->
+    <link rel="stylesheet" href="error.css" />
+</head>
+
+<body>
+    <!-- Bakgrundsdiv -->
+    <div id="background"></div>
+
+    <!-- Innehåll -->
+    <div id="content">
+        <h1>ERROR: Unknown command</h1>
+        <p>Försök igen med rätt lösenord.</p>
+
+        <!-- Knapp för att gå tillbaka -->
+        <button id="backBtn">Tillbaka till startsidan</button>
+    </div>
+
+    <script>
+        // Lägg till event listener för knappen
+        document.getElementById('backBtn').addEventListener('click', () => {
+            window.location.href = '../index.html'; // Går tillbaka till startsidan (en nivå upp)
+        });
+    </script>
+</body>
+
+</html>

@@ -1,34 +1,55 @@
+// Hämta element från DOM
+const input = document.getElementById("commandInput");
+const output = document.getElementById("output");
+const terminal = document.getElementById("terminal");
 
-const input = document.getElementById('commandInput');
-const output = document.getElementById('output');
-const terminal = document.getElementById('terminal');
+const correctPassword = "ono"; // Rätt lösenord
 
-const audio = new Audio("noise.mp3");
-audio.loop = true;
-audio.volume = 0.3;
-audio.play();
-
+// Funktion för glitch-effekt vid fel
 function triggerErrorEffect() {
-    terminal.classList.add("glitch-error");
-    setTimeout(() => terminal.classList.remove("glitch-error"), 400);
+  // Lägg till en CSS-klass som triggar glitch-animationen
+  terminal.classList.add("glitch-error");
+
+  // Ta bort klassen efter 400 ms för att animationen ska kunna triggas igen
+  setTimeout(() => terminal.classList.remove("glitch-error"), 400);
 }
 
-input.addEventListener("keypress", function(e) {
-    if (e.key === "Enter") {
-        const cmd = input.value.trim().toLowerCase();
-        output.innerHTML += `> ${cmd}<br>`;
-        input.value = "";
+// Lyssna på Enter-tangenttryck i inputfältet
+input.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    // Hämta och normalisera användarens input (trimma och gör små bokstäver)
+    const cmd = input.value.trim().toLowerCase();
 
-        if (cmd === "ono") {
-            output.innerHTML += "<span class='blink'>[LOADING]</span><br>";
-            setTimeout(() => {
-                window.location.href = "unlocked.html";
-            }, 2000);
-        } else {
-            output.innerHTML += "<span style='color:red;'>ERROR: Unknown command</span><br><br>";
-            triggerErrorEffect();
-        }
+    // Visa användarens kommando i terminalen
+    output.innerHTML += `> ${cmd}<br>`;
 
-        output.scrollTop = output.scrollHeight;
+    // Rensa inputfältet efter inskickat kommando
+    input.value = "";
+
+    // Kolla om lösenordet är korrekt
+    if (cmd === correctPassword) {
+      // Visa laddningsindikator
+      output.innerHTML += "<span class='blink'>[LOADING]</span><br>";
+
+      // Efter 2 sekunder, navigera till den låsta sidan
+      setTimeout(() => {
+        window.location.href = "unlocked/unlocked.html"; // Gå till lyckat inlogg
+      }, 2000);
+    } else {
+      // Visa felmeddelande i rött
+      output.innerHTML +=
+        "<span style='color:red;'>ERROR: Unknown command</span><br><br>";
+
+      // Spela upp glitch-effekt vid fel
+      triggerErrorEffect();
+
+      // Efter 1.5 sekunder, navigera till fel-sidan
+      setTimeout(() => {
+        window.location.href = "error/error.html";; // Gå till fel-sida
+      }, 1500);
     }
+
+    // Scrolla terminalens output till botten för att visa senaste
+    output.scrollTop = output.scrollHeight;
+  }
 });

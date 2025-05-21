@@ -1,0 +1,63 @@
+/* Bakgrund med logga fullscreen */
+#background {
+    position: fixed;
+    /* Fäster bakgrunden över hela skärmen */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    /* Full bredd */
+    height: 100vh;
+    /* Full höjd */
+    background: url('../assets/ono_glitch.gif') no-repeat center center;
+    /* Bakgrundsbild centrerad */
+    background-size: cover;
+    /* Täcker hela ytan */
+    z-index: -1;
+    /* Bakgrunden ligger bakom allt annat */
+    filter: brightness(0.5);
+    /* Mörkar ner bakgrunden lite */
+}
+
+/* Innehåll ovanpå bakgrunden */
+#content {
+    position: relative;
+    /* Behövs för z-index */
+    z-index: 1;
+    /* Ligger över bakgrunden */
+    height: 100vh;
+    /* Tar hela höjden */
+    display: flex;
+    /* Flexbox-layout */
+    flex-direction: column;
+    /* Staplar innehållet vertikalt */
+    justify-content: center;
+    /* Vertikal centrering */
+    align-items: center;
+    /* Horisontell centrering */
+    color: white;
+    /* Vit text */
+    font-family: 'Courier New', monospace;
+    /* Terminal-font */
+    text-align: center;
+    /* Centrerar text */
+}
+
+/* Stil för tillbaka-knappen */
+#backBtn {
+    margin-top: 20px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #0f0;
+    /* Grön bakgrund */
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#backBtn:hover {
+    background-color: #0c0;
+    /* Mörkare grön vid hover */
+}

@@ -3,23 +3,32 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>ONO Terminal</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>ONO Terminal - Homepage</title>
+    <!-- Länk till CSS för startsidan -->
+    <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
+    <!-- Bakgrundsdiv som visar ONO-loggan fullscreen -->
     <div id="background"></div>
+
+    <!-- Innehållscontainer för terminal och glitch-text -->
     <div id="content">
+        <!-- Glitchande ONO-text -->
         <!-- <div id="glitch-text">ONO</div> -->
+
+        <!-- Terminalfönster -->
         <div id="terminal">
-            <pre>> SYSTEM READY...</pre>
-            <div id="output"></div>
+            <pre>> SYSTEM READY...</pre> <!-- Terminalens starttext -->
+            <div id="output"></div> <!-- Här visas användarens input och output -->
             <div>
-                <span>&gt;</span>
+                <span>&gt;</span> <!-- Prompt-symbol -->
                 <input type="text" id="commandInput" autofocus placeholder="Enter command..." />
             </div>
         </div>
     </div>
+
+    <!-- JS för terminalfunktionalitet -->
     <script src="script.js"></script>
 </body>
 

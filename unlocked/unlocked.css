@@ -1,0 +1,62 @@
+/* Grundinställningar för html och body */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'Courier New', monospace;
+    background: black;
+}
+
+/* Videon som täcker hela bakgrunden */
+video#bgVideo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    /* Bakom texten och knappen */
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+}
+
+/* Texten ovanpå videon */
+.overlay-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 3rem;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    z-index: 10;
+    /* Över videon */
+}
+
+/* Stil för tillbaka-knappen */
+#backBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #0f0;
+    /* Grön bakgrund */
+    border: none;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    z-index: 20;
+    /* Ligger över videon och texten */
+}
+
+#backBtn:hover {
+    background-color: #0c0;
+    /* Mörkare grön vid hover */ }
