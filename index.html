@@ -1,36 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="sv">
+
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>ONO Terminal</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-    
-<div id="intro">
-    <div class="intro-text">WELCOME TO THE MADHOUSE</div>
-</div>
-<div id="terminal" style="display:none;">
-    <pre>> SYSTEM READY...</pre>
-    <div id="output"></div>
-    <div>
-        <span>&gt;</span>
-        <input type="text" id="commandInput" autofocus placeholder="Enter command...">
+    <div id="terminal-container">
+        <!-- <div id="glitch-text">ONO</div>-->
+        <div id="terminal">
+            <pre>> SYSTEM READY...</pre>
+            <div id="output"></div>
+            <div>
+                <span>&gt;</span>
+                <input type="text" id="commandInput" autofocus placeholder="Enter command..." />
+            </div>
+        </div>
     </div>
-</div>
-
-    
-<div id="logo-container">
-    <img src="ono_glitch.gif" alt="ONO Logo">
-</div>
-
     <script src="script.js"></script>
-    <script>
-        setTimeout(() => {
-            document.getElementById('intro').style.display = 'none';
-            document.getElementById('terminal').style.display = 'block';
-            document.getElementById('commandInput').focus();
-        }, 2500);
-    </script>
 </body>
+
 </html>
