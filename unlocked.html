@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>ONO Access</title>
-    <style>
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            overflow: hidden;
-            font-family: 'Courier New', monospace;
-        }
-        video#bgVideo {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            min-width: 100%;
-            min-height: 100%;
-            width: auto;
-            height: auto;
-            z-index: -1;
-            transform: translate(-50%, -50%);
-            object-fit: cover;
-        }
-        .overlay-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 3rem;
-            text-align: center;
-            text-shadow: 0 0 10px rgba(255,255,255,0.8);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>ONO Access</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+      background: black;
+    }
+    video#bgVideo {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+    }
+    .overlay-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 3rem;
+      text-align: center;
+      text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    }
+  </style>
 </head>
 <body>
-    <video autoplay muted loop id="bgVideo">
-        <source src="4k ONOXPUSH.mov" type="video/quicktime">
-        Your browser does not support the video tag.
-    </video>
-    <div class="overlay-text">WE ARE ONO</div>
+  <video autoplay muted loop id="bgVideo">
+    <source src="assets/ONO_compressed.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+  <div class="overlay-text">WE ARE ONO</div>
 </body>
 </html>
