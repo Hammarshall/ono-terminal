@@ -1,40 +1,40 @@
-/* Bakgrund med ONO-loggan */
-body,
-html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    background: black;
-    background-image: url('assets/ono_glitch.gif');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    font-family: 'Courier New', monospace;
-    color: #fff;
+/* Fullscreen bakgrund med logga */
+#background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: url('assets/ono_glitch.gif') no-repeat center center;
+    background-size: cover;
+    z-index: -1;
+    filter: brightness(0.5);
+    /* Mörka ner bakgrunden lite om du vill */
 }
 
-/* Container för terminal och text */
-#terminal-container {
+/* Innehåll ovanpå bakgrunden */
+#content {
     position: relative;
-    height: 100%;
+    z-index: 1;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: white;
+    font-family: 'Courier New', monospace;
 }
 
-/* Glitchande ONO-text */
+/* Glitch-text */
 #glitch-text {
     font-size: 6rem;
     font-weight: bold;
-    color: white;
-    position: relative;
     animation: glitch 1.5s infinite;
-    user-select: none;
     margin-bottom: 40px;
+    user-select: none;
 }
 
-/* Terminal styling */
+/* Terminal */
 #terminal {
     background: rgba(0, 0, 0, 0.75);
     padding: 20px;
@@ -87,7 +87,7 @@ html {
     }
 }
 
-/* Input styling */
+/* Inputfält */
 input[type="text"] {
     background: black;
     border: none;
