@@ -1,74 +1,101 @@
-/* Grundinställningar för html och body */
+/* ==========================================================================
+   ► GLOBALT
+   ========================================================================== */
 html,
 body {
     margin: 0;
     padding: 0;
+    width: 100%;
     height: 100%;
     overflow: hidden;
     font-family: 'Courier New', monospace;
     background: transparent;
 }
 
-/* Videon som täcker hela bakgrunden */
+/* ==========================================================================
+     ► BAKGRUNDSVIDEO
+     ========================================================================== */
 video#bgVideo {
     position: fixed;
     top: 50%;
     left: 50%;
     min-width: 100%;
     min-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: -1;
-    /* Bakom texten och knapparna */
     transform: translate(-50%, -50%);
     object-fit: cover;
+    z-index: -1;
 }
 
-/* Texten ovanpå videon */
+/* ==========================================================================
+     ► ÖVERLAY‐TEXTRUBRIK
+     ========================================================================== */
 .overlay-text {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    color: white;
-    font-size: 3rem;
-    text-align: center;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
+    transform: translateX(-50%);
+    color: #0f0;
+    font-size: 4rem;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+    text-shadow:
+        0 0 8px #0f0,
+        0 0 16px #0f0,
+        0 0 24px #0fff;
     z-index: 10;
-    /* Över videon */
 }
 
-/* Stil för tillbaka-knappen och artister-knappen */
-#backBtn,
-#artistsBtn {
-    position: fixed;
-    bottom: 20px;
-    padding: 10px 25px;
-    font-size: 1rem;
-    cursor: pointer;
-    background-color: #0f0;
-    /* Grön bakgrund */
-    border: none;
-    border-radius: 5px;
-    color: black;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
+/* ==========================================================================
+     ► KNAPPGRUPP
+     ========================================================================== */
+.button-group {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 20px;
     z-index: 20;
-    /* Ligger över videon och texten */
 }
 
-/* Tillbaka-knappen till höger */
-#backBtn {
-    right: 20px;
+/* ==========================================================================
+     ► KNAPPSTIL
+     ========================================================================== */
+.button-group button {
+    padding: 12px 28px;
+    background: rgba(0, 0, 0, 0.75);
+    border: 2px solid #0f0;
+    border-radius: 8px;
+    color: #0f0;
+    font-size: 1rem;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 8px #0f0;
+    transition:
+        box-shadow .2s ease,
+        border-color .2s ease,
+        color .2s ease;
+    animation: btnGlitch 2.5s infinite;
 }
 
-/* Artister-knappen flyttad mer åt vänster för större avstånd */
-#artistsBtn {
-    right: 300px;
-    /* Ökat från 140px till 180px */
+/* Glitch‐animation för knappar */
+@keyframes btnGlitch {
+
+    0%,
+    100% {
+        text-shadow: 1px 0 #0f0, -1px 0 #0f0;
+    }
+
+    50% {
+        text-shadow: 1px 0 #ff0040, -1px 0 #00fff7;
+    }
 }
 
-#backBtn:hover,
-#artistsBtn:hover {
-    background-color: #0c0;
-    /* Mörkare grön vid hover */ }
+/* Hover/fokus */
+.button-group button:hover,
+.button-group button:focus {
+    border-color: #ff0040;
+    color: #ff0040;
+    box-shadow: 0 0 12px #ff0040, 0 0 24px #ff0040;
+    animation: none;
+    outline: none; }

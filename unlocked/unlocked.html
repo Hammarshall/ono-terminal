@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>ONO Access - Lyckat inlogg</title>
+  <title>ONO Access – Lyckat inlogg</title>
   <link rel="stylesheet" href="unlocked.css" />
 </head>
 
@@ -17,21 +17,22 @@
   <!-- Text över videon -->
   <div class="overlay-text">WE ARE ONO</div>
 
-  <!-- Knapp för att gå tillbaka -->
-  <button id="backBtn">Tillbaka till startsidan</button>
-
-  <!-- Ny knapp till artister -->
-  <button id="artistsBtn">Artister</button>
+  <!-- Knapp‐grupp -->
+  <div class="button-group">
+    <button id="homeBtn">Start</button>
+    <button id="artistsBtn">Artister</button>
+    <button id="scheduleBtn">Spelschema</button>
+  </div>
 
   <script>
-    // Event listener för tillbaka-knappen
-    document.getElementById('backBtn').addEventListener('click', () => {
+    document.getElementById('homeBtn').addEventListener('click', () => {
       window.location.href = '../index.html';
     });
-
-    // Event listener för artister-knappen
     document.getElementById('artistsBtn').addEventListener('click', () => {
-      window.location.href = '../artist/artist.html';  // Ändra till rätt sökväg om annorlunda
+      window.location.href = '../artist/artist.html';
+    });
+    document.getElementById('scheduleBtn').addEventListener('click', () => {
+      window.location.href = '../schedule/schedule.html';
     });
   </script>
 </body>

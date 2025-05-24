@@ -3,99 +3,91 @@
    ========================================================================== */
 body {
     margin: 0;
-    background: black;
-    /* Svart bakgrund */
+    background: #000;
     color: #0f0;
-    /* Neon-grön text */
     font-family: 'Courier New', monospace;
     padding: 40px 20px;
-    /* Luft vid kanter */
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
 /* ==========================================================================
-   ► HEADER (SIDTITEL)
-   ========================================================================== */
+     ► HEADER (SIDTITEL) + GLITCH
+     ========================================================================== */
+@keyframes glitch {
+
+    0%,
+    100% {
+        text-shadow: 2px 0 #ff0040, -2px 0 #00fff7;
+    }
+
+    50% {
+        text-shadow: -2px 0 #ff0040, 2px 0 #00fff7;
+    }
+}
+
 header {
     font-size: 3rem;
-    /* Stor rubrik */
     margin-bottom: 40px;
-    /* Luft under */
     text-transform: uppercase;
     letter-spacing: 0.15em;
-    /* Mellanrum mellan bokstäver */
-    animation: glitch 2s infinite;
-    /* Glitch-effekt */
     user-select: none;
-    /* Ingen markering */
+    animation: glitch 2s infinite;
+    position: relative;
 }
 
 /* ==========================================================================
-   ► FILTER & SORT CONTAINER
-   ========================================================================== */
-#filterControls {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    /* Avstånd mellan fält */
-    width: 100%;
-    max-width: 1000px;
-    margin-bottom: 30px;
-    /* Luft under */
+     ► TILLBAKA-KNAPP (ENDAST PÅ ARTISTSIDAN)
+     ========================================================================== */
+@keyframes backButtonGlitch {
+
+    0%,
+    100% {
+        text-shadow: 1px 0 #0f0, -1px 0 #0f0;
+    }
+
+    25% {
+        text-shadow: 1px 0 #ff0040, -1px 0 #00fff7;
+    }
+
+    50% {
+        text-shadow: -1px 0 #ff0040, 1px 0 #00fff7;
+    }
+
+    75% {
+        text-shadow: 1px 0 #00fff7, -1px 0 #ff0040;
+    }
 }
 
-/* Grundstil för sökfält + dropdowns */
-#filterControls input,
-#filterControls select {
-    padding: 8px;
-    /* Inre luft */
-    font-size: 1rem;
-    /* Lättläst text */
-}
-
-/* Sökrutan expanderar */
-#filterControls input[type="text"] {
-    flex-grow: 1;
-    min-width: 180px;
-}
-
-/* ► VIBE-STYLING FÖR SÖK & DROPDOWNS */
-#filterControls input[type="text"],
-#filterControls select {
-    background: rgba(0, 0, 0, 0.85);
-    /* Mörk transparent bakgrund */
+#backBtn {
+    position: fixed;
+    top: 40px;
+    left: 60px;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.75);
     border: 2px solid #0f0;
-    /* Neon-grön kant */
     box-shadow: 0 0 8px #0f0, 0 0 16px #0f0;
-    /* Neon-glow */
     color: #0f0;
-    /* Grön text */
-    border-radius: 5px;
-    /* Rundade hörn */
-    outline: none;
-    /* Ingen blå kant */
-    transition:
-        box-shadow 0.2s ease,
-        border-color 0.2s ease;
-    /* Mjuka övergångar */
-    animation: inputGlitch 3s infinite;
-    /* Diskret glitch-anim */
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    user-select: none;
+    animation: backButtonGlitch 3s infinite;
+    transition: box-shadow 0.2s, border-color 0.2s, color 0.2s;
+    z-index: 110;
 }
 
-/* Hover/fokus på sök + dropdown */
-#filterControls input[type="text"]:hover,
-#filterControls input[type="text"]:focus,
-#filterControls select:hover,
-#filterControls select:focus {
+#backBtn:hover {
     border-color: #ff0040;
-    /* Magenta kant */
     box-shadow: 0 0 12px #ff0040, 0 0 24px #ff0040;
-    /* Magenta-glow */
+    color: #ff0040;
+    animation: none;
 }
 
-/* Animation för input-glitch */
+/* ==========================================================================
+     ► FILTER & SORT CONTROLS
+     ========================================================================== */
 @keyframes inputGlitch {
 
     0%,
@@ -108,9 +100,45 @@ header {
     }
 }
 
+#filterControls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    width: 100%;
+    max-width: 1000px;
+    margin-bottom: 30px;
+}
+
+#filterControls input,
+#filterControls select {
+    padding: 8px;
+    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.85);
+    border: 2px solid #0f0;
+    box-shadow: 0 0 8px #0f0;
+    color: #0f0;
+    border-radius: 5px;
+    outline: none;
+    animation: inputGlitch 3s infinite;
+    transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+#filterControls input[type="text"] {
+    flex-grow: 1;
+    min-width: 180px;
+}
+
+#filterControls input:hover,
+#filterControls input:focus,
+#filterControls select:hover,
+#filterControls select:focus {
+    border-color: #ff0040;
+    box-shadow: 0 0 12px #ff0040;
+}
+
 /* ==========================================================================
-   ► ARTIST-GRID
-   ========================================================================== */
+     ► ARTIST-GRID & CARD
+     ========================================================================== */
 #artists {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -119,358 +147,290 @@ header {
     max-width: 1000px;
 }
 
-/* ► ARTIST-KORT */
 .artist-card {
-    background: rgba(0, 0, 0, 0.75);
-    /* Halvtransparent bakgrund */
-    border: 2px solid #0f0;
-    /* Grön kant */
-    box-shadow: 0 0 15px #0f0;
-    /* Grön glow */
-    border-radius: 10px;
-    padding: 15px;
+    background: #111;
+    border: 1px solid #0f0;
+    box-shadow: 0 0 6px #0f0;
+    border-radius: 8px;
+    padding: 12px;
     display: flex;
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    animation: glitchText 3s infinite;
-    /* Svag text-glitch */
-    transition: box-shadow .3s, border-color .3s;
-    outline: none;
+    transition: box-shadow 0.2s, border-color 0.2s;
 }
 
 .artist-card img {
     width: 100%;
     border-radius: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #0f0;
+    margin-bottom: 12px;
     object-fit: cover;
+    border: 1px solid #0f0;
 }
 
 .artist-card h3 {
-    margin: 0;
-    font-size: 1.5rem;
+    margin: 8px 0 4px;
+    font-size: 1.3rem;
     color: #0f0;
 }
 
 .artist-card p {
     margin: 0;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #aaa;
 }
 
 .artist-card:hover,
 .artist-card:focus {
     border-color: #ff0040;
-    /* Magenta kant */
-    box-shadow: 0 0 20px #ff0040;
-    color: #ff0040;
-    animation: none;
-    /* Stoppa glitch vid hover */
-    outline: 2px solid #ff0040;
-}
-
-/* ► TEXT-GLITCH FOR ARTISTS */
-@keyframes glitchText {
-
-    0%,
-    100% {
-        text-shadow: 1px 0 #0f0, -1px 0 #0f0;
-    }
-
-    50% {
-        text-shadow: 1px 0 #ff0040, -1px 0 #00fff7;
-    }
+    box-shadow: 0 0 12px #ff0040;
 }
 
 /* ==========================================================================
-   ► MODAL-CONTAINER – HELA ÖVERLÄGG
-   ========================================================================== */
+     ► MODAL & OVERLAY
+     ========================================================================== */
 #modal {
     display: none;
-    /* Göm initialt */
     position: fixed;
-    /* Fäst på skärmen */
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    /* Täcker hela ytan */
+    inset: 0;
     background: rgba(0, 0, 0, 0.85);
-    /* Mörk transparent bakgrund */
     backdrop-filter: blur(4px);
-    /* Sudda ut bakgrunden */
     justify-content: center;
-    /* Centrera horisontellt */
     align-items: center;
-    /* Centrera vertikalt */
     opacity: 0;
-    /* Osynlig */
-    transition: opacity 0.3s ease;
-    /* Fade-in */
+    transition: opacity 0.3s;
     z-index: 100;
-    /* Överst */
 }
 
 #modal[style*="display: flex"] {
     display: flex;
     opacity: 1;
-    /* Visa med fade-in */
 }
 
-/* ==========================================================================
-   ► MODAL-INNEHÅLL – BOXEN I MITTEN
-   ========================================================================== */
 #modalContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* Centrera horisontellt */
-    text-align: center;
-    /* Centrera text */
-    width: 280px;
-    /* Fast bredd */
-    max-width: 90vw;
-    /* Anpassar för små skärmar */
-    padding: 20px 15px;
-    /* Luft inuti boxen */
     background: #111;
-    /* Mörk bakgrund */
-    border: 2px solid #0f0;
-    /* Neon-grön kant */
-    box-shadow: 0 0 15px #0f0;
-    /* Grön glow */
-    border-radius: 10px;
+    border: 1px solid #0f0;
+    box-shadow: 0 0 8px #0f0;
+    border-radius: 8px;
+    padding: 16px;
+    width: 280px;
+    max-width: 90vw;
+    text-align: center;
     color: #0f0;
-    /* Neon-grön text */
-    font-size: 0.9rem;
+    font-size: .9rem;
     position: relative;
-    /* För stäng-knapp */
 }
 
-/* ==========================================================================
-   ► RESPONSIVT
-   ========================================================================== */
-@media (max-width: 480px) {
-    #filterControls {
-        flex-direction: column;
-        /* Stapla filterkontroller */
-    }
-
-    #filterControls input,
-    #filterControls select {
-        width: 100%;
-        /* Full bredd */
-    }
-
-    #modalContent {
-        width: 90vw;
-        /* Nästan hela skärmen */
-        padding: 15px;
-        /* Minska padding */
-    }
-}
-
-/* ==========================================================================
-   ► TVINGA MODALENS BILDSTORLEK
-   ========================================================================== */
 #modalImg {
     display: block;
-    /* Block så margin auto funkar */
-    margin: 0 auto 20px;
-    /* Centrera + luft under */
-    width: 100% !important;
-    /* Fyller sin box */
-    max-width: 240px !important;
-    /* Högst 240px bred */
-    max-height: 140px !important;
-    /* Högst 140px hög */
+    margin: 0 auto 12px;
+    max-width: 220px;
+    width: 100%;
     object-fit: cover;
-    /* Beskär snyggt */
     border: 1px solid #0f0;
-    /* Grön kant */
     border-radius: 5px;
-    /* Rundade hörn */
 }
 
-/* ==========================================================================
-   ► STÄNG-KNAPP
-   ========================================================================== */
 #modalClose {
     position: absolute;
     top: 8px;
     right: 12px;
-    /* Övre högra hörnet */
     font-size: 1.5rem;
     color: #ff0040;
-    /* Magenta */
     cursor: pointer;
-    /* Klickbar */
 }
 
 /* ==========================================================================
-   ► DIALOGINNEHÅLL: SOCIALA & KNAPPAR
-   ========================================================================== */
+     ► SOCIAL LINKS
+     ========================================================================== */
+#socialLinks {
+    margin: 12px 0;
+}
+
 #socialLinks a {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
+    gap: 6px;
     background: rgba(0, 0, 0, 0.85);
-    border: 2px solid #0f0;
-    padding: 8px 12px;
+    border: 1px solid #0f0;
+    padding: 6px 10px;
     border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 15px;
     transition: background 0.2s, border-color 0.2s;
 }
 
 #socialLinks a img {
     width: 20px;
     height: 20px;
-    color: #0f0;
-    /* Neon-grön */
     fill: currentColor;
-    /* SVG-fill från color */
-    filter: drop-shadow(0 0 4px #0f0) drop-shadow(0 0 8px #0f0);
-    animation: iconGlitch 3s infinite;
+    color: #0f0;
+    filter: drop-shadow(0 0 4px #0f0);
 }
 
 #socialLinks a:hover {
     background: #0f0;
-    /* Grön bakgrund */
     border-color: #ff0040;
-    /* Magenta kant */
 }
 
 #socialLinks a:hover img {
-    filter: drop-shadow(0 0 6px #ff0040) drop-shadow(0 0 12px #ff0040);
-}
-
-/* ► DISKRET GLITCH-ANIMATION FÖR IKONER */
-@keyframes iconGlitch {
-
-    0%,
-    100% {
-        transform: translate(0, 0);
-        opacity: 1;
-    }
-
-    10% {
-        transform: translate(-1px, 1px);
-        opacity: 0.9;
-    }
-
-    20% {
-        transform: translate(2px, -1px);
-        opacity: 0.85;
-    }
-
-    30% {
-        transform: translate(-2px, 2px);
-        opacity: 0.9;
-    }
-
-    40% {
-        transform: translate(1px, -2px);
-        opacity: 0.95;
-    }
+    filter: drop-shadow(0 0 6px #ff0040);
 }
 
 /* ==========================================================================
-   ► KNAPP-STYLING: BILJETT & KALENDAR
-   ========================================================================== */
-#ticketLink,
-#addCalBtn {
-    display: inline-block;
-    padding: 8px 12px;
-    margin: 10px 5px 0 0;
-    background: #0f0;
-    /* Neon-grön */
-    color: black;
-    /* Svart text */
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background 0.2s;
-}
-
-#addCalBtn {
-    background: #ff0040;
-}
-
-/* Magenta för kalender */
-#ticketLink:hover {
-    background: #0c0;
-}
-
-#addCalBtn:hover {
-    background: #e60039;
-}
-
-/* ==========================================================================
-   ► TIMELINE
-   ========================================================================== */
-#timelineSection {
-    width: 100%;
-    max-width: 1000px;
-    margin: 40px 0;
-}
-
+     ► TIMELINE
+     ========================================================================== */
 #timeline {
     position: relative;
-    padding-left: 40px;
-    border-left: 2px solid #0f0;
+    padding-left: 2rem;
+    margin: 2rem 0;
+    width: 100%;
+    max-width: 800px;
+}
+
+#timeline::before {
+    content: "";
+    position: absolute;
+    left: 0.75rem;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #0f0;
+    opacity: 0.6;
 }
 
 .timeline-item {
     position: relative;
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
 }
 
 .timeline-item::before {
     content: "";
     position: absolute;
-    left: -9px;
-    top: 3px;
-    width: 16px;
-    height: 16px;
+    left: 0;
+    top: 0.3rem;
+    width: 10px;
+    height: 10px;
     background: #0f0;
     border-radius: 50%;
+    opacity: 0.8;
 }
 
 .timeline-item h4 {
-    margin: 0;
-    font-size: 1.2rem;
+    margin: 0 0 0.25rem;
+    font-size: 1.1rem;
     color: #0f0;
-    margin-left: 20px;
 }
 
 .timeline-item time {
-    display: block;
-    margin-left: 20px;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     color: #aaa;
 }
 
 /* ==========================================================================
-   ► TILLBAKA-KNAPP
-   ========================================================================== */
-#backBtn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 10px 20px;
-    background: #0f0;
-    color: black;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 110;
-    transition: background .3s;
+     ► SPELSCHEMA
+     ========================================================================== */
+#schedule {
+    width: 100%;
+    max-width: 800px;
+    margin: 2.5rem auto;
+    color: #0f0;
+    font-family: 'Courier New', monospace;
 }
 
-#backBtn:hover {
-    background: #0c0;
+#schedule h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    letter-spacing: .1em;
+}
+
+#schedule h3 {
+    font-size: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+#schedule h4 {
+    font-size: 1.2rem;
+    margin: 1rem 0 0.5rem;
+    color: #ff0040;
+}
+
+#schedule .venue {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: .5rem;
+}
+
+#schedule .setlist {
+    list-style: none;
+    padding-left: 1rem;
+    border-left: 2px solid #0f0;
+}
+
+#schedule .setlist li {
+    display: flex;
+    margin: 0.75rem 0;
+}
+
+#schedule .setlist time {
+    display: inline-block;
+    width: 5.5rem;
+    font-weight: bold;
+}
+
+#schedule .setlist span {
+    flex: 1;
+    color: #ccc;
+}
+
+/* ==========================================================================
+     ► RESPONSIVT
+     ========================================================================== */
+@media (max-width:480px) {
+    #filterControls {
+        flex-direction: column;
+    }
+
+    #filterControls input,
+    #filterControls select {
+        width: 100%;
+    }
+
+    #backBtn {
+        top: 20px;
+        left: 20px;
+        padding: 6px 12px;
+    }
+
+    #modalContent {
+        width: 90vw;
+        padding: 12px;
+    }
+
+    #timeline {
+        padding-left: 1.5rem;
+    }
+
+    #timeline::before {
+        left: 0.5rem;
+    }
+
+    .timeline-item {
+        padding-left: 1.2rem;
+    }
+
+    #schedule .setlist time {
+        width: 4.5rem;
+    }
+
+    #schedule h2 {
+        font-size: 1.6rem;
+    }
+
+    #schedule h3 {
+        font-size: 1.3rem;
+    }
+
+    #schedule h4 {
+        font-size: 1.1rem;
+    }
 }
