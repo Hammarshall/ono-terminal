@@ -3,39 +3,46 @@
 <head>
   <meta charset="UTF-8" />
   <title>ONO Festival – Artist Lineup</title>
+  <link rel="stylesheet" href="../global.css" />
   <link rel="stylesheet" href="artist.css" />
 </head>
 <body>
-  <!-- Tillbaka -->
-  <button id="backBtn" onclick="window.location.href='../unlocked/unlocked.html'">
-    ← Tillbaka
-  </button>
 
-  <!-- Titel -->
-  <header>Artist Lineup</header>
+  <!-- BACK-BUTTON: använder den globala .button-stil och placeras via artist.css -->
+  <div class="button-group">
+    <button id="backBtn" onclick="window.location.href='../unlocked/unlocked.html'">
+      ← Tillbaka
+    </button>
+  </div>
 
-  <!-- FILTER & SORT -->
+  <!-- SIDTITEL med glitch-effekt via .glitch-klass -->
+  <header class="glitch">Artist Lineup</header>
+
+  <!-- FILTER & SORT: grid-layouterna sköts av artist.css, hover/glitch globalt -->
   <div id="filterControls">
-    <input  type="text"   id="searchInput" placeholder="Sök artister…" />
+    <input type="text" id="searchInput" placeholder="Sök artister…" />
+  
     <select id="genreFilter">
       <option value="">Alla genrer</option>
-      <option value="Synthwave">Synthwave</option>
-      <option value="Techno">Techno</option>
-      <option value="Ambient">Ambient</option>
-      <option value="Afro house / Keinemusik">Afro house / Keinemusik</option>
-      <option value="Klubbig, global, rytmisk energi">Klubbig, global, rytmisk energi</option>
-      <option value="Experimentellt, mainstream, elektroniskt">Experimentellt, mainstream, elektroniskt</option>
-      <option value="Afro, baile, R&amp;B, hiphop">Afro, baile, R&amp;B, hiphop</option>
-      <option value="Blandade uttryck, curated vibe">Blandade uttryck, curated vibe</option>
+      <option>Synthwave</option>
+      <option>Techno</option>
+      <option>Ambient</option>
+      <option>Afro house / Keinemusik</option>
+      <option>Klubbig, global, rytmisk energi</option>
+      <option>Experimentellt, mainstream, elektroniskt</option>
+      <option>Afro, baile, R&amp;B, hiphop</option>
+      <option>Blandade uttryck, curated vibe</option>
     </select>
+  
     <select id="floorFilter">
       <option value="">Alla golv</option>
-      <option value="Teatergatans uteservering">Teatergatans uteservering</option>
-      <option value="Röda rummet">Röda rummet</option>
-      <option value="Övre baren">Övre baren</option>
-      <option value="Lilla London">Lilla London</option>
-      <option value="Teatergatan">Teatergatan</option>
+      <option>Teatergatans uteservering</option>
+      <option>Röda rummet</option>
+      <option>Övre baren</option>
+      <option>Lilla London</option>
+      <option>Teatergatan</option>
     </select>
+  
     <select id="timeSort">
       <option value="">Sortera efter tid</option>
       <option value="asc">Tid ↑</option>
@@ -43,40 +50,39 @@
     </select>
   </div>
 
-  <!-- ARTISTKORT -->
+  <!-- ARTISTKORT: layout i artist.css -->
   <div id="artists"></div>
 
-  <!-- MODAL -->
-  <div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
-    <div id="modalContent">
-      <div id="modalClose" role="button" tabindex="0">&times;</div>
-      <h2 id="modalName"></h2>
-      <p id="modalStyle" class="music-style"></p>
-      <img id="modalImg" src="" alt="Artistbild" />
-      <p id="modalDesc"></p>
-      <p><strong>Speltid:</strong> <span id="modalTime"></span></p>
-      <div id="modalMusic">
-        <iframe id="modalSpotify" src="" width="100%" height="80" frameborder="0"
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
-      </div>
-      <div id="socialLinks">
-        <a id="spotifyLink" href="#" target="_blank" rel="noopener">
-          <img src="spotify-icon.svg" alt="Spotify" />
-        </a>
-        <a id="instagramLink" href="#" target="_blank" rel="noopener">
-          <img src="instagram-icon.svg" alt="Instagram" />
-        </a>
-      </div>
-      <a id="ticketLink" class="ticket-button" href="#" target="_blank">Köp biljett</a>
-      <button id="addCalBtn">Lägg till i kalender</button>
-    </div>
-  </div>
+<!-- MODAL: popup med detaljer, grund-styling från global.css -->
+<div id="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+  <div id="modalContent">
+    <div id="modalClose" role="button" tabindex="0">&times;</div>
 
-  <!-- DYNAMISKT SPELSCHEMA -->
-  <section id="schedule">
-    <h2>Spelschema</h2>
-    <div id="timeline"></div>
-  </section>
+    <h2 id="modalName"></h2>
+    <p id="modalStyle" class="music-style"></p>
+    <img id="modalImg" src="" alt="Artistbild" />
+    <p id="modalDesc"></p>
+
+    <p><strong>Speltid:</strong> <span id="modalTime"></span></p>
+
+    <div id="modalMusic">
+      <iframe id="modalSpotify" src="" width="100%" height="80" frameborder="0"
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
+      </iframe>
+    </div>
+
+    <div id="socialLinks">
+      <a id="spotifyLink" href="#" target="_blank" rel="noopener">
+        <img src="spotify-icon.svg" alt="Spotify" />
+      </a>
+      <a id="instagramLink" href="#" target="_blank" rel="noopener">
+        <img src="instagram-icon.svg" alt="Instagram" />
+      </a>
+    </div>
+
+    <button id="addCalBtn">Lägg till i kalender</button>
+  </div>
+</div>
 
   <script src="artistsData.js"></script>
   <script src="artist.js"></script>

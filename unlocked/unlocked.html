@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>ONO Access – Lyckat inlogg</title>
+  <link rel="stylesheet" href="/global.css" />
   <link rel="stylesheet" href="unlocked.css" />
 </head>
 
@@ -19,13 +20,13 @@
 
   <!-- Knapp‐grupp -->
   <div class="button-group">
-    <button id="homeBtn">Start</button>
     <button id="artistsBtn">Artister</button>
     <button id="scheduleBtn">Spelschema</button>
+    <button id="backBtn">Startsida</button>
   </div>
 
   <script>
-    document.getElementById('homeBtn').addEventListener('click', () => {
+    document.getElementById('backBtn').addEventListener('click', () => {
       window.location.href = '../index.html';
     });
     document.getElementById('artistsBtn').addEventListener('click', () => {

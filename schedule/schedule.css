@@ -1,0 +1,14 @@
+.button-group {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    bottom: auto;
+    transform: none;
+    z-index: 110;
+    /* ta bort gap om du vill */
+    gap: 0;
+}
+
+/* Om du bara vill styla knappen, inte övriga .button-group-element */
+.button-group #backBtn {
+    padding: 8px 16px; }

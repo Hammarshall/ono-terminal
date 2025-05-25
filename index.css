@@ -1,106 +1,57 @@
-/* Bakgrundsdiv som visar loggan fullscreen */
+/* ── BAKGRUND OCH LOGGA ─────────────────────────────────────────── */
 #background {
     position: fixed;
-    /* Fäst bakgrunden på skärmen */
     top: 0;
     left: 0;
     width: 100vw;
-    /* Full bredd */
     height: 100vh;
-    /* Full höjd */
     background: url('assets/ono_glitch.gif') no-repeat center center;
-    /* Bakgrundsbild centrerad */
     background-size: cover;
-    /* Täcker hela ytan */
     z-index: -1;
-    /* Bakgrund bakom allt annat */
     filter: brightness(0.5);
-    /* Mörka ner bakgrunden något */
 }
 
-/* Container för allt innehåll ovanpå bakgrunden */
+/* ── CONTAINER FÖR INNEHÅLL ──────────────────────────────────────── */
 #content {
     position: relative;
-    /* Behöver för z-index */
     z-index: 1;
-    /* Över bakgrunden */
     height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* Vertikal centrering */
     align-items: center;
-    /* Horisontell centrering */
-    color: white;
-    /* Vit textfärg */
-    font-family: 'Courier New', monospace;
-    /* Terminalfont */
+    /* färg och font kommer från global.css */
 }
 
-/* Den stora glitchande ONO-texten */
+/* ── GLITCH-TEXT ─────────────────────────────────────────────────── */
 #glitch-text {
-    font-size: 6rem;
-    /* Stor text */
+    font-size: var(--font-size-xxl);
     font-weight: bold;
-    animation: glitch 1.5s infinite;
-    /* Glitch-animation */
-    margin-bottom: 40px;
+    /* animation: glitch 1.5s infinite;  – definieras globalt */
+    margin-bottom: var(--spacing-lg);
     user-select: none;
-    /* Ej markera text */
 }
 
-/* Terminalfönstrets utseende */
+/* ── TERMINALFÖNSTRET ─────────────────────────────────────────────── */
 #terminal {
-    background: rgba(0, 0, 0, 0.75);
-    /* Svart transparent bakgrund */
-    padding: 20px;
-    border: 1px solid #0f0;
-    /* Grön kant */
+    background: var(--color-bg-alt);
+    padding: var(--spacing-md);
+    border: 1px solid var(--color-primary);
     width: 80%;
     max-width: 700px;
-    box-sizing: border-box;
-    color: #0f0;
-    /* Grön text */
-    font-size: 1rem;
+    color: var(--color-primary);
+    font-size: var(--font-size-base);
     overflow-y: auto;
     max-height: 300px;
-    /* Maxhöjd */
+    
 }
 
-/* Animation för glitch-effekt */
-@keyframes glitch {
-    0% {
-        text-shadow: 2px 0 red, -2px 0 cyan;
-    }
-
-    20% {
-        text-shadow: -2px 0 red, 2px 0 cyan;
-    }
-
-    40% {
-        text-shadow: 2px 0 red, -2px 0 cyan;
-    }
-
-    60% {
-        text-shadow: -2px 0 red, 2px 0 cyan;
-    }
-
-    80% {
-        text-shadow: 2px 0 red, -2px 0 cyan;
-    }
-
-    100% {
-        text-shadow: -2px 0 red, 2px 0 cyan;
-    }
-}
-
-/* Inputfältet i terminalen */
-input[type="text"] {
-    background: black;
+#commandInput {
+    background: var(--color-bg-alt);
     border: none;
-    color: #0f0;
-    font-family: 'Courier New', monospace;
-    font-size: 1rem;
+    color: var(--color-text);
+    font-family: var(--font-family-mono);
+    font-size: var(--font-size-base);
+    padding: var(--spacing-sm);
     width: 90%;
-    outline: none;
-    /* Ingen blå kant */ }
+}

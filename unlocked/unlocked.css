@@ -1,101 +1,45 @@
-/* ==========================================================================
-   ► GLOBALT
-   ========================================================================== */
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    font-family: 'Courier New', monospace;
-    background: transparent;
-}
+/* ── IMPORTERA GLOBALA STILAR ──────────────────────────────────────────── */
+@import './global.css';
 
-/* ==========================================================================
-     ► BAKGRUNDSVIDEO
-     ========================================================================== */
+/* ── JUSTERA BAKGRUNDSVIDEO FÖR DENNA SIDA ─────────────────────────────── */
 video#bgVideo {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    transform: translate(-50%, -50%);
-    object-fit: cover;
-    z-index: -1;
+    /* Om du vill tona ner ljusstyrkan ytterligare */
+    filter: brightness(0.5);
 }
 
-/* ==========================================================================
-     ► ÖVERLAY‐TEXTRUBRIK
-     ========================================================================== */
+/* ── OVERRIDES FÖR ÖVERLAY-TEXT (om du vill ändra storlek eller placering här) ─ */
 .overlay-text {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-    color: #0f0;
-    font-size: 4rem;
-    text-transform: uppercase;
-    letter-spacing: .2em;
-    text-shadow:
-        0 0 8px #0f0,
-        0 0 16px #0f0,
-        0 0 24px #0fff;
-    z-index: 10;
+    /* Exempel: lite större text just på denna sida */
+    font-size: 5rem;
+    top: 35%;
 }
 
-/* ==========================================================================
-     ► KNAPPGRUPP
-     ========================================================================== */
 .button-group {
-    position: absolute;
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 20px;
-    z-index: 20;
+    bottom: 12%;
 }
 
-/* ==========================================================================
-     ► KNAPPSTIL
-     ========================================================================== */
-.button-group button {
-    padding: 12px 28px;
-    background: rgba(0, 0, 0, 0.75);
-    border: 2px solid #0f0;
-    border-radius: 8px;
-    color: #0f0;
-    font-size: 1rem;
-    text-transform: uppercase;
-    cursor: pointer;
-    box-shadow: 0 0 8px #0f0;
-    transition:
-        box-shadow .2s ease,
-        border-color .2s ease,
-        color .2s ease;
-    animation: btnGlitch 2.5s infinite;
+/* ── SIDSPECIFIKA KNAPP-OVERRIDES ───────────────────────────────────────── */
+#artistsBtn {
+    /* ev. egen margin eller order */
 }
 
-/* Glitch‐animation för knappar */
-@keyframes btnGlitch {
+#scheduleBtn {
+    /* egen styling */
+}
 
-    0%,
-    100% {
-        text-shadow: 1px 0 #0f0, -1px 0 #0f0;
+#backBtn {
+    /* startsida-knappen får sammastil som övriga */
+}
+
+/* ── RESPONSIVT ─────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+    .overlay-text {
+        font-size: 3rem;
+        top: 40%;
     }
 
-    50% {
-        text-shadow: 1px 0 #ff0040, -1px 0 #00fff7;
+    .button-group {
+        bottom: 8%;
+        gap: 12px;
     }
 }
-
-/* Hover/fokus */
-.button-group button:hover,
-.button-group button:focus {
-    border-color: #ff0040;
-    color: #ff0040;
-    box-shadow: 0 0 12px #ff0040, 0 0 24px #ff0040;
-    animation: none;
-    outline: none; }
